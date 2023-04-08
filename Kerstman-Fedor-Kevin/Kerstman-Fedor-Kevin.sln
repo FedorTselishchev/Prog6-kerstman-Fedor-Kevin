@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kerstman-Fedor-Kevin", "Kerstman-Fedor-Kevin\Kerstman-Fedor-Kevin.csproj", "{4395CE1E-4BEC-4408-9B92-72D97B0787E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kerstman-Fedor-Kevin", "Kerstman-Fedor-Kevin\Kerstman-Fedor-Kevin.csproj", "{4395CE1E-4BEC-4408-9B92-72D97B0787E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kerstman-Fedor-Kevin.Tests", "Kerstman-Fedor-Kevin.Tests\Kerstman-Fedor-Kevin.Tests.csproj", "{F15F1681-EC5A-428B-B333-8E0FE3477A3D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4395CE1E-4BEC-4408-9B92-72D97B0787E8} = {4395CE1E-4BEC-4408-9B92-72D97B0787E8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{4395CE1E-4BEC-4408-9B92-72D97B0787E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4395CE1E-4BEC-4408-9B92-72D97B0787E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4395CE1E-4BEC-4408-9B92-72D97B0787E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15F1681-EC5A-428B-B333-8E0FE3477A3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15F1681-EC5A-428B-B333-8E0FE3477A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15F1681-EC5A-428B-B333-8E0FE3477A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15F1681-EC5A-428B-B333-8E0FE3477A3D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
