@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Kerstman_Fedor_Kevin.models
+namespace KerstmanPROG6_Fedor_Kevin.models
 {
-    public class User : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser<Guid>
     {
         [Required]
         [Display(Name = "Voornaam")]

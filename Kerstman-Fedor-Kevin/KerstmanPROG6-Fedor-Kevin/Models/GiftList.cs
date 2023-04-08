@@ -2,7 +2,7 @@
 using SantasWishlist.Domain;
 using System.ComponentModel.DataAnnotations;
 
-namespace Kerstman_Fedor_Kevin.models
+namespace KerstmanPROG6_Fedor_Kevin.models
 {
     public class GiftList : IValidatableObject
     {
@@ -12,7 +12,7 @@ namespace Kerstman_Fedor_Kevin.models
 
         public List<Gift> allGifts;
 
-        public User user;
+        public ApplicationUser user;
 
         public int Age;
 

@@ -1,10 +1,10 @@
-﻿using Kerstman_Fedor_Kevin.models;
+﻿using KerstmanPROG6_Fedor_Kevin.models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kerstman_Fedor_Kevin.Data
+namespace KerstmanPROG6_Fedor_Kevin.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User, UserRole, Guid>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationUserRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

@@ -1,5 +1,5 @@
-using Kerstman_Fedor_Kevin.Data;
-using Kerstman_Fedor_Kevin.models;
+using KerstmanPROG6_Fedor_Kevin.Data;
+using KerstmanPROG6_Fedor_Kevin.models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SantasWishlist.Domain;
@@ -13,9 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IGiftRepository, GiftRepository>();
 
-
-
-builder.Services.AddIdentity<User, UserRole>(options =>
+builder.Services.AddIdentity<ApplicationUser, ApplicationUserRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireNonAlphanumeric = false;
@@ -24,6 +22,7 @@ builder.Services.AddIdentity<User, UserRole>(options =>
     options.Password.RequiredLength = 5;
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseExceptionHandler("/Error");
+    app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -45,9 +44,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 app.Run();
