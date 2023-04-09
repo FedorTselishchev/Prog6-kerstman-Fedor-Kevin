@@ -27,24 +27,28 @@
         <input hidden name="username" value="@User.Identity?.Name">
         <div class="form-group">
             <label>Hoe oud ben jij?</label>
-            <input class="form-control" name="age" min="0" max="100" required/>
+            <input class="form-control" name="age" min="0" max="20" required/>
+        </div>
+
+        <div class="form-check">
+            @Html.RadioButton("behaviour", "goodbehaviour", new { @id = "good"}) Heel braaf!
         </div>
         <div class="form-check">
-            @Html.RadioButton("behaviour", "goodbehaviour", new { @id = "goodbehaviour"}) Heel braaf!
+            @Html.RadioButton("behaviour", "goodbehaviour", new { @id = "middle"}) Een beetje braaf
         </div>
         <div class="form-check">
-            @Html.RadioButton("behaviour", "goodbehaviour", new { @id = "middlebehaviour"}) Een beetje braaf
+            @Html.RadioButton("behaviour", "badbehaviour", new { @id = "bad"}) Ik heb het geprobeerd.
         </div>
-        <div class="form-check">
-            @Html.RadioButton("behaviour", "badbehaviour", new { @id = "badbehaviour"}) Ik heb het geprobeerd.
-        </div>
+
         <div class="form-group">
             <label>Wat heb je dan gedaan dat je zo braaf bent?</label>
-            <input class="form-control" id="goodBehaviourInput" name="explanation"/>
+            <input class="form-control" id="goodBehaviourInput" name="Uitleg"/>
         </div>
         <button type="submit" class="btn btn-primary">Naar de volgende stap!</button>
     </form>
 } 
+
+
 <script type="text/javascript">
     document.getElementById('badbehaviour').onclick = function(){
         document.getElementById('goodBehaviourInput').disabled = true;
