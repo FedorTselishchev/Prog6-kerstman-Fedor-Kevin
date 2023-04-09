@@ -38,7 +38,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                 }
                 if (names.Length != names.Distinct().Count())
                 {
-                    TempData["alertMessage"] = "Er staan twee namen in de lijstje.";
+                    TempData["alertMessage"] = "There are two names in the list";
                     return Redirect("/");
                 }
                 if (ModelState.IsValid)
@@ -82,7 +82,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                     }
                 }
             }
-            TempData["alertMessage"] = "Je hebt je verlanglijstje al ingevuld! De kerstman is al voor je bezig.";
+            TempData["alertMessage"] = "You already created your wishlist! You will hear from Santa soon!";
             return View();
         }
 
