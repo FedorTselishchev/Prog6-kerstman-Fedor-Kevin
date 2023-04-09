@@ -1,5 +1,6 @@
 using KerstmanPROG6_Fedor_Kevin.Data;
 using KerstmanPROG6_Fedor_Kevin.models;
+using KerstmanPROG6_Fedor_Kevin.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SantasWishlist.Domain;
@@ -48,5 +49,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+Seeder.Initialize(app);
 app.Run();
