@@ -1,0 +1,13 @@
+﻿@using SantasWishlist.Domain
+
+<p>Dit zijn je uitgekozen cadeaus!</p>
+<form action="/Gift/Confirm" method="post">
+    <input hidden value="@ViewBag.ChosenGifts" name="gifts"/>
+    <ul>
+        @foreach (var gift in ViewBag.ChosenGifts)
+        {
+            <li>@gift</li>
+        }
+    </ul>
+    <button type="submit" class="btn btn-primary" onclick="return confirm('Weet je het zeker?')">Bevestig</button>
+</form>

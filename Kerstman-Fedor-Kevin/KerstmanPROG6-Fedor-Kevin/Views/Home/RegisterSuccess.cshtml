@@ -1,0 +1,23 @@
+﻿@using KerstmanPROG6_Fedor_Kevin.models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Goed gewerkt @User.Identity?.Name!</h1>
+}
+<p>De volgende kindjes kunnen nu inloggen:</p>
+
+@if (null != TempData["alertMessage"])
+{
+    <p class="text-danger">@TempData["alertMessage"]</p>
+}
+<div class="row">
+    <div class="col">
+        @ViewBag.Persons
+    </div>
+</div>
+<p>En hiervoor gebruiken ze het wachtwoord:</p>
+<h2>@ViewBag.Password</h2>

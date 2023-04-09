@@ -1,8 +1,58 @@
-﻿@{
+﻿@using KerstmanPROG6_Fedor_Kevin.models
+@using Microsoft.AspNetCore.Identity
+@model ApplicationUser
+@inject SignInManager<ApplicationUser> SignInManager
+@inject RoleManager<ApplicationUserRole> RoleManager
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if(User.IsInRole("Child") || true){
+
+    <div class="row">
+        <div class="col">
+            <p>De <b>Kerstman</b> heeft gevraagd of je je verlanglijstje wil invullen!</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Voor we cadeautjes uitkiezen moeten we je eerst wat vragen?</p>
+        </div>
+    </div>
+    @if (null != TempData["alertMessage"])
+    {
+        <p class="text-danger">@TempData["alertMessage"]</p>
+    }
+    <form action="/Gift/AboutMe" method="post">
+        <input hidden name="username" value="@User.Identity?.Name">
+        <div class="form-group">
+            <label>Hoe oud ben jij?</label>
+            <input class="form-control" name="age" min="0" max="100" required/>
+        </div>
+        <div class="form-check">
+            @Html.RadioButton("behaviour", "goodbehaviour", new { @id = "goodbehaviour"}) Heel braaf!
+        </div>
+        <div class="form-check">
+            @Html.RadioButton("behaviour", "goodbehaviour", new { @id = "middlebehaviour"}) Een beetje braaf
+        </div>
+        <div class="form-check">
+            @Html.RadioButton("behaviour", "badbehaviour", new { @id = "badbehaviour"}) Ik heb het geprobeerd.
+        </div>
+        <div class="form-group">
+            <label>Wat heb je dan gedaan dat je zo braaf bent?</label>
+            <input class="form-control" id="goodBehaviourInput" name="explanation"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Naar de volgende stap!</button>
+    </form>
+} 
+<script type="text/javascript">
+    document.getElementById('badbehaviour').onclick = function(){
+        document.getElementById('goodBehaviourInput').disabled = true;
+    }
+    document.getElementById('middlebehaviour').onclick = function () {
+        document.getElementById('goodBehaviourInput').disabled = false;
+    }
+    document.getElementById('goodbehaviour').onclick = function () {
+        document.getElementById('goodBehaviourInput').disabled = false;
+    }
+</script>

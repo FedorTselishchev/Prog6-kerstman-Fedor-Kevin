@@ -1,0 +1,83 @@
+﻿@using KerstmanPROG6_Fedor_Kevin.models
+@using Microsoft.AspNetCore.Identity
+@using SantasWishlist.Domain;
+@inject SignInManager<ApplicationUser> SignInManager
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>Bedankt @User.Identity?.Name!</h1>
+}
+<form action="/Gift/Wishlist" method="post">
+    <input hidden name="age" value="@ViewBag.Age" />
+    <input hidden name="behaviour" value="@ViewBag.Behaviour" />
+    <input hidden name="explanation" value="@ViewBag.Explanation" />
+    <input hidden name="gifts" value="@ViewBag.Gifts" />
+    <div class="row">
+        <div class="col">
+            <p>Nu is het tijd om je cadeautjes uit te kiezen</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>De cadeautjes zijn opgedeeld in 4 categorien en je mag voor elk categorie kiezen welke cadeautjes je wil!</p>
+        </div>
+    </div>
+    @foreach (var error in ViewBag.Errors)
+    {
+        if (error != null)
+        {
+            <p class="text-danger">@error</p>
+        }
+    }
+    <div class="row">
+        <div class="col">
+            <h3>Something you Want!</h3>
+            @foreach (var item in ViewBag.Gifts)
+            {
+                @if (item.Category == GiftCategory.WANT)
+                {
+                    <input type="checkbox" name="gifts" value="@item.Name" /> @item.Name <br />
+                }
+            }
+        </div>
+        <div class="col">
+            <h3>Something you Need!</h3>
+            @foreach (var item in ViewBag.Gifts)
+            {
+                @if (item.Category == GiftCategory.NEED)
+                {
+                    <input type="checkbox" name="gifts" value="@item.Name" /> @item.Name <br />
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Something to Wear!</h3>
+            @foreach (var item in ViewBag.Gifts)
+            {
+                @if (item.Category == GiftCategory.WEAR)
+                {
+                    <input type="checkbox" name="gifts" value="@item.Name" /> @item.Name <br />
+                }
+            }
+        </div>
+        <div class="col">
+            <h3>Something to Read!</h3>
+            @foreach (var item in ViewBag.Gifts)
+            {
+                @if (item.Category == GiftCategory.READ)
+                {
+                    <input type="checkbox" name="gifts" value="@item.Name" /> @item.Name <br />
+                }
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Staat wat je wil er niet tussen?</h3>
+            <input type="text" name="extra" />
+        </div>
+    </div>
+    <br />
+    <button class="btn btn-primary" type="submit">Naar afronden!</button>
+</form>
