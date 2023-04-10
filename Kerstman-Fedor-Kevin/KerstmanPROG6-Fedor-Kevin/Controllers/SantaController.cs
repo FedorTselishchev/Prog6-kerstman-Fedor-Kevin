@@ -48,9 +48,19 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                         var user = new ApplicationUser { UserName = names[x], Name = names[x] };
                         user.IsBehaved = Input.IsBehaved;
                         user.IsRegistered = false;
-                        var role = new ApplicationUserRole { Role = "Child", Name = "Child" };
 
-                        var claim = new Claim("Role", "Child");
+                        await _userManager.CreateAsync(user, Input.Password.ToLower());
+                        Task.WaitAll();
+
+                        var role = new ApplicationUserRole { Role = "Santa", Name = "Santa" };
+
+                        await _roleManager.CreateAsync(role);
+                        Task.WaitAll();
+
+                        await _userManager.AddToRoleAsync(user, "Santa");
+
+                        var claim = new Claim("Rank", "Santa");
+                        await _userManager.AddClaimAsync(user, claim);
 
                         ViewBag.Persons = Input.Name;
                         ViewBag.Password = Input.Password.ToLower();
