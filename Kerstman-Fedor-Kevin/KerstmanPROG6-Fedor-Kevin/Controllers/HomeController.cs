@@ -1,4 +1,5 @@
 ﻿using KerstmanPROG6_Fedor_Kevin.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,8 +14,13 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
             _logger = logger;
         }
 
+
         public IActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View("/Views/Santa/Login.cshtml");
+            }
             return View();
         }
 

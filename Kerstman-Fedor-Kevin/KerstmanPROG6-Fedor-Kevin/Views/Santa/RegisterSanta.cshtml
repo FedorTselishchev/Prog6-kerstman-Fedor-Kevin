@@ -3,25 +3,10 @@
 @model ApplicationUser
 @inject SignInManager<ApplicationUser> SignInManager
 @inject RoleManager<ApplicationUserRole> RoleManager
-@{
-    ViewData["Title"] = "Home Page";
-}
-@if (User.IsInRole("Santa"))
-{
-    @if (SignInManager.IsSignedIn(User))
-    {
-        <h1>Welkom terug @User.Identity?.Name!</h1>
-    }
-    <p>Welke kinderen mogen deze keer hun verlanglijstje invullen?</p>
-
-    @if (null != TempData["alertMessage"])
-    {
-        <p class="text-danger">@TempData["alertMessage"]</p>
-    }
-    
-    <div class="row">
+ 
+<div class="row">
         <div class="col-md-4">
-            <form action="/Santa/Register" method="post">
+            <form action="/Santa/RegisterSanta" method="post">
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     <p>Alle namen:</p>
@@ -47,8 +32,7 @@
                     <p class="text-muted">Maak het wachtwoord voor de kindjes niet te moeilijk!</p>
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <button type="submit" class="btn btn-primary">Accounts voor kindjes maken!</button>
+                <button type="submit" class="btn btn-primary">register Santa</button>
             </form>
         </div>
     </div>
-}

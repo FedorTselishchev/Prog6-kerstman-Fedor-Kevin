@@ -52,6 +52,54 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                         await _userManager.CreateAsync(user, Input.Password.ToLower());
                         Task.WaitAll();
 
+                        var role = new ApplicationUserRole { Role = "Child", Name = "Child" };
+
+                        await _roleManager.CreateAsync(role);
+                        Task.WaitAll();
+
+                        await _userManager.AddToRoleAsync(user, "Child");
+
+                        var claim = new Claim("Rank", "Child");
+                        await _userManager.AddClaimAsync(user, claim);
+
+                        ViewBag.Persons = Input.Name;
+                        ViewBag.Password = Input.Password.ToLower();
+                    }
+                    return View("/Views/Home/RegisterSuccess.cshtml");
+                }
+            }
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        //[Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterSanta(ApplicationUser Input)
+        {
+            if (ModelState.IsValid)
+            {
+                names = Input.Name.Split(',');
+
+                for (int x = 0; x < names.Length; x++)
+                {
+                    names[x] = Regex.Replace(names[x], @"\s", "");
+                }
+                if (names.Length != names.Distinct().Count())
+                {
+                    TempData["alertMessage"] = "There are two names in the list";
+                    return Redirect("/");
+                }
+                if (ModelState.IsValid)
+                {
+                    for (int x = 0; x < names.Length; x++)
+                    {
+                        var user = new ApplicationUser { UserName = names[x], Name = names[x] };
+                        user.IsBehaved = Input.IsBehaved;
+                        user.IsRegistered = false;
+
+                        await _userManager.CreateAsync(user, Input.Password.ToLower());
+                        Task.WaitAll();
+
                         var role = new ApplicationUserRole { Role = "Santa", Name = "Santa" };
 
                         await _roleManager.CreateAsync(role);
@@ -70,6 +118,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
             }
             return Redirect("/");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(ApplicationUser Input)
@@ -103,6 +152,10 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
             return RedirectToAction(nameof(Login));
         }
         public IActionResult Register()
+        {
+            return View();
+        }
+        public IActionResult RegisterSanta()
         {
             return View();
         }
