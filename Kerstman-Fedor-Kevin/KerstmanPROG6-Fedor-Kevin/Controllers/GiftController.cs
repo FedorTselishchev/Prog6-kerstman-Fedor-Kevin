@@ -88,8 +88,12 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
             else
             {
                 foreach (var result in results.Distinct().ToList())
+                {
                     if (result != null)
+                    { 
                         errors.Add(result.ErrorMessage);
+                    }
+                }
 
                 ViewBag.Errors = errors.Distinct().ToList();
                 ViewBag.Username = username;
@@ -106,7 +110,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
         //[Authorize]
         public async Task<IActionResult> ConfirmAsync(List<string> gifts)
         {
-            var user = await _userManager.GetUserAsync(User);//TODO
+            var user = await _userManager.GetUserAsync(User);
 
             WishList wishList = new WishList();
             wishList.Name = user.UserName;
@@ -121,14 +125,14 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                     }
                 }
             }
-
             _giftRepository.SendWishList(wishList);
             user.IsRegistered = true;
-            //update user
-
+            
+            await _userManager.UpdateAsync(user);
             await _signInManager.SignOutAsync();
+
             TempData["successMessage"] = "De kerstman heeft jouw verlanglijstje ontvangen!";
-            return RedirectToAction("Login", "Account");
+            return View("/Views/Santa/Login.cshtml");
         }
     }
 }
