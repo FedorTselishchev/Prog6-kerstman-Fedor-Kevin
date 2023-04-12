@@ -149,7 +149,7 @@ namespace Kerstman_Fedor_Kevin.test
             giftListModel.giftRepository = new Mock<GiftRepository>().Object;
             ValidationContext validationContext = new ValidationContext(giftListModel);
             var results = giftListModel.Validate(validationContext);
-            Assert.Equal("You cannot get a music instrument without oordopjes", results.First().ErrorMessage);
+            Assert.Equal("You cannot get a music instrument without earplugs or vice versa", results.First().ErrorMessage);
         }
 
         [Fact]
