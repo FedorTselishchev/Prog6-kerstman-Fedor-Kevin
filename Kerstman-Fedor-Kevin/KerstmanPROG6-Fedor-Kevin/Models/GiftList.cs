@@ -126,7 +126,15 @@ namespace KerstmanPROG6_Fedor_Kevin.models
                 { 
                     yield return new ValidationResult("You may only have 1 gift that does not match your age.");
                 }
+                if (user != null && user.UserName.ToLower() == "kevin")
+                {
+                    var match2 = allGifts.Where(x => x.Name == "Spelcomputer" || x.Name == "Computerspel").Count();
 
+                    if (match2 != 0)
+                    {
+                        yield return new ValidationResult("I know you do not have a gaming console, Kevin. How will you play your game!");
+                    }
+                }
             }
 
             if (Extra != null)

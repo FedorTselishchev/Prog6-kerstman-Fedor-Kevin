@@ -174,14 +174,15 @@ namespace Kerstman_Fedor_Kevin.test
         public async Task GiftTest9()
         {
             var giftList = new List<Gift>();
-            giftList.Add(new Gift() { Name = "Lego", Category = GiftCategory.WANT });
+            giftList.Add(new Gift() { Name = "Computerspel", Category = GiftCategory.WANT });
             var giftListModel = new GiftList();
             giftListModel.allGifts = giftList;
-            giftListModel.Behaviour = "goodbehaviour";
+            giftListModel.giftRepository = new Mock<GiftRepository>().Object;
+            giftListModel.Behaviour = "badbehaviour";
             giftListModel.user = new ApplicationUser() { UserName = "Kevin", Name = "Kevin", IsBehaved = true };
             ValidationContext validationContext = new ValidationContext(giftListModel);
             var results = giftListModel.Validate(validationContext);
-            Assert.Equal("You have been nice! Choose at least 1 gift per category!", results.First().ErrorMessage);
+            Assert.Equal("I know you do not have a gaming console, Kevin. How will you play your game!", results.First().ErrorMessage);
         }
     }
 }
