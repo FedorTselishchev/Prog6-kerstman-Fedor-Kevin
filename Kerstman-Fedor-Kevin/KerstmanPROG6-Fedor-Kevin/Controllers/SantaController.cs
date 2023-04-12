@@ -40,7 +40,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                 if (names.Length != names.Distinct().Count())
                 {
                     TempData["alertMessage"] = "There are two names in the list";
-                    return Redirect("/");
+                    return View();
                 }
                 if (ModelState.IsValid)
                 {
@@ -69,7 +69,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                     return View("/Views/Home/RegisterSuccess.cshtml");
                 }
             }
-            return Redirect("/");
+            return View();
         }
 
         [HttpPost]
@@ -88,7 +88,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                 if (names.Length != names.Distinct().Count())
                 {
                     TempData["alertMessage"] = "There are two names in the list";
-                    return Redirect("/");
+                    return View();
                 }
                 if (ModelState.IsValid)
                 {
@@ -117,7 +117,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
                     return View("/Views/Home/RegisterSuccess.cshtml");
                 }
             }
-            return Redirect("/");
+            return View();
         }
 
 
