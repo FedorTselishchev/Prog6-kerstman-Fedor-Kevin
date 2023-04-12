@@ -1,4 +1,5 @@
 ﻿using KerstmanPROG6_Fedor_Kevin.models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -24,7 +25,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
             _roleManager = roleManager;
         }
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(ApplicationUser Input)
         {
@@ -72,7 +73,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RegisterSanta(ApplicationUser Input)
         {

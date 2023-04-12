@@ -44,7 +44,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Wishlist(List<string> gifts, int age, string behaviour, string username, string explanation, string extra)
         {
             var user = await _userManager.GetUserAsync(User);
