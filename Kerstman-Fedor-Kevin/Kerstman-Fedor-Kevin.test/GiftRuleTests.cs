@@ -88,10 +88,10 @@ namespace Kerstman_Fedor_Kevin.test
         {
             var giftList = new List<Gift>();
             giftList.Add(new Gift() { Name = "Dolfje Weerwolfje", Category = GiftCategory.READ });
-            giftList.Add(new Gift() { Name = "Spongebob en de zeven dwergen", Category = GiftCategory.READ });
-            giftList.Add(new Gift() { Name = "Barry Potter!", Category = GiftCategory.READ });
-            giftList.Add(new Gift() { Name = "Griezelbus", Category = GiftCategory.READ });
-            giftList.Add(new Gift() { Name = "Head First Java", Category = GiftCategory.READ });
+            giftList.Add(new Gift() { Name = "Knex for dummies", Category = GiftCategory.READ });
+            giftList.Add(new Gift() { Name = "Hoe overleef ik de middelbare school!", Category = GiftCategory.READ });
+            giftList.Add(new Gift() { Name = "Harry potter", Category = GiftCategory.READ });
+            giftList.Add(new Gift() { Name = "Hitchhikersguide to the galaxy", Category = GiftCategory.READ });
             var giftListModel = new GiftList();
             giftListModel.user = new ApplicationUser() { UserName = "Stijn", Name = "Stijn" };
             giftListModel.allGifts = giftList;
