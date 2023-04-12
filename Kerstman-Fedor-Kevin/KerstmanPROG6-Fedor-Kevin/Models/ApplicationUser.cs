@@ -9,8 +9,8 @@ namespace KerstmanPROG6_Fedor_Kevin.models
     {
         [Required]
         [Display(Name = "Voornaam")]
-        [StringLength(20, MinimumLength = 5, ErrorMessage = "Het naam moet tussen 5 en 20 karakters zijn.")]
-        [RegularExpression("[A-Za-z]+", ErrorMessage = "Het naam bevat alleen letters")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Het naam moet tussen 2 en 20 karakters zijn.")]
+        [RegularExpression("[A-Za-z,]+", ErrorMessage = "Het naam bevat alleen letters")]
         public string Name { get; set; }
         
         [NotMapped]

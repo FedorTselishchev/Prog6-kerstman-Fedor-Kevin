@@ -37,7 +37,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
 
             if (age <= 0)
             {
-                TempData["alertMessage"] = "vul een geldige leeftijd!";
+                TempData["alertMessage"] = "Enter a valid age!";
                 return View("/Views/Home/Index.cshtml");
             }
             return View("/Views/Wishlist/Presents.cshtml", _giftList);

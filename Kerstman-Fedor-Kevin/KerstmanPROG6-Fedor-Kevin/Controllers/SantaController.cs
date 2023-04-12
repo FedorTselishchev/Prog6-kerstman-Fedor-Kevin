@@ -126,6 +126,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByNameAsync(Input.Name);
+                if(user == null) { TempData["alertMessage"] = "Unknown user!"; return View(); }
                 if (user.IsRegistered != true)
                 {
                     var result = await _signInManager.PasswordSignInAsync(Input.Name, Input.Password.ToLower(), false, lockoutOnFailure: false);

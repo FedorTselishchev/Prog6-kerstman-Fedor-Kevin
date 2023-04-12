@@ -118,7 +118,7 @@ namespace KerstmanPROG6_Fedor_Kevin.models
 
                 if (match1 != 0)
                 { 
-                    yield return new ValidationResult("You cannot get a music instrument without oordopjes");
+                    yield return new ValidationResult("You cannot get a music instrument without earplugs or vice versa");
                 }
                 var skipAgeCounter = allGifts.Where(i => giftRepository.CheckAge(i.Name) > Age).Count();
 
