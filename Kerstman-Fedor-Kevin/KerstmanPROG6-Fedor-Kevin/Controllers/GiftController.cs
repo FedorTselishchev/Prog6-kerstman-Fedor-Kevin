@@ -24,7 +24,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public IActionResult AboutMe(string username, string behaviour, int age, string explanation)
         {
             ViewBag.Username = username;
@@ -107,7 +107,7 @@ namespace KerstmanPROG6_Fedor_Kevin.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> ConfirmAsync(List<string> gifts)
         {
             var user = await _userManager.GetUserAsync(User);
